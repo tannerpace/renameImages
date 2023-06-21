@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# List of image names
 imageNames=(
   "charleston-custom-home-builder"
   "home-renovations-charleston-sc"
@@ -44,26 +44,30 @@ imageNames=(
   "charleston-modern-kitchen-design"
   "charleston-luxury-home-builder"
   "charleston-porch-construction"
-  "charleston-new-image-1"
-  "charleston-new-image-2"
-  "charleston-new-image-3"
-  "charleston-new-image-4"
-  "charleston-new-image-5"
-  "charleston-new-image-6"
-  "charleston-new-image-7"
-  "charleston-new-image-8"
-  "charleston-new-image-9"
-  "charleston-new-image-10"
-  "charleston-new-image-11"
-  "charleston-new-image-12"
-  "charleston-new-image-13"
-  "charleston-new-image-14"
-  "charleston-new-image-15"
-  "charleston-new-image-16"
-  "charleston-new-image-17"
-  "charleston-new-image-18"
-  "charleston-new-image-19"
-  "charleston-new-image-20"
+  "charleston-dock-construction"
+  "charleston-outdoor-kitchen-design"
+  "charleston-dock-renovation"
+  "charleston-outdoor-living-spaces"
+  "charleston-dock-builder"
+  "charleston-outdoor-entertainment-area"
+  "charleston-dock-maintenance"
+  "charleston-outdoor-kitchen-builder"
+  "charleston-dock-extensions"
+  "charleston-outdoor-kitchen-remodel"
+  "charleston-dock-design"
+  "charleston-outdoor-kitchen-renovation"
+  "charleston-dock-repair"
+  "charleston-outdoor-kitchen-contractor"
+  "charleston-dock-restoration"
+  "charleston-outdoor-kitchen-makeover"
+  "charleston-dock-enhancements"
+  "charleston-outdoor-kitchen-upgrade"
+  "charleston-dock-upgrades"
+  "charleston-outdoor-kitchen-expansion"
+  "charleston-dock-improvements"
+  "charleston-outdoor-kitchen-customization"
+  "charleston-dock-remodeling"
+  "charleston-outdoor-kitchen-additions"
 )
 
 
@@ -76,4 +80,17 @@ fi
 
 if [ ${#selectedPhotos[@]} -gt ${#imageNames[@]} ]; then
   echo "The number of selected photos is greater than the number of image names."
-  echo "Only the first ${#image
+  echo "Only the first ${#imageNames[@]} photos will be renamed."
+fi
+
+
+for (( i=0; i<${#selectedPhotos[@]} && i<${#imageNames[@]}; i++ )); do
+  directory=$(dirname "${selectedPhotos[i]}")
+  extension="${selectedPhotos[i]##*.}"
+  newFileName="$directory/${imageNames[i]}.$extension"
+  mv "${selectedPhotos[i]}" "$newFileName"
+  echo "Renamed ${selectedPhotos[i]} to $newFileName"
+done
+
+echo "Photos renamed successfully."
+exit 0

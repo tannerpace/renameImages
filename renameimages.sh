@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# This script renames the selected photos to the image names in the imageNames array. change the names depending on the project and the seo you are targeting.
 imageNames=(
   "charleston-custom-home-builder.jpg"
   "home-renovations-charleston-sc.jpg"
@@ -54,15 +53,10 @@ if [ ${#selectedPhotos[@]} -eq 0 ]; then
 fi
 
 
-if [ ${#selectedPhotos[@]} -ne ${#imageNames[@]} ]; then
-  echo "The number of selected photos does not match the number of image names."
-  echo "Please make sure to select the same number of photos as the number of image names."
-  exit 1
-fi
-
-
 for (( i=0; i<${#selectedPhotos[@]}; i++ )); do
-  newFileName=$(dirname "${selectedPhotos[i]}")/${imageNames[i]}
+  directory=$(dirname "${selectedPhotos[i]}")
+  extension="${selectedPhotos[i]##*.}"
+  newFileName="$directory/${imageNames[i]}.$extension"
   mv "${selectedPhotos[i]}" "$newFileName"
   echo "Renamed ${selectedPhotos[i]} to $newFileName"
 done

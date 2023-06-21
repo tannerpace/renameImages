@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 imageNames=(
   "charleston-custom-home-builder"
   "home-renovations-charleston-sc"
@@ -43,6 +44,26 @@ imageNames=(
   "charleston-modern-kitchen-design"
   "charleston-luxury-home-builder"
   "charleston-porch-construction"
+  "charleston-new-image-1"
+  "charleston-new-image-2"
+  "charleston-new-image-3"
+  "charleston-new-image-4"
+  "charleston-new-image-5"
+  "charleston-new-image-6"
+  "charleston-new-image-7"
+  "charleston-new-image-8"
+  "charleston-new-image-9"
+  "charleston-new-image-10"
+  "charleston-new-image-11"
+  "charleston-new-image-12"
+  "charleston-new-image-13"
+  "charleston-new-image-14"
+  "charleston-new-image-15"
+  "charleston-new-image-16"
+  "charleston-new-image-17"
+  "charleston-new-image-18"
+  "charleston-new-image-19"
+  "charleston-new-image-20"
 )
 
 
@@ -53,13 +74,6 @@ if [ ${#selectedPhotos[@]} -eq 0 ]; then
 fi
 
 
-for (( i=0; i<${#selectedPhotos[@]}; i++ )); do
-  directory=$(dirname "${selectedPhotos[i]}")
-  extension="${selectedPhotos[i]##*.}"
-  newFileName="$directory/${imageNames[i]}.$extension"
-  mv "${selectedPhotos[i]}" "$newFileName"
-  echo "Renamed ${selectedPhotos[i]} to $newFileName"
-done
-
-echo "Photos renamed successfully."
-exit 0
+if [ ${#selectedPhotos[@]} -gt ${#imageNames[@]} ]; then
+  echo "The number of selected photos is greater than the number of image names."
+  echo "Only the first ${#image
